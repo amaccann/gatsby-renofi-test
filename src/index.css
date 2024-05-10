@@ -1,0 +1,120 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Averta", "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
+  sans-serif;
+  background-color: #E5F5FF;
+  color: #212F49;
+  line-height: 24px;
+  position: relative;
+  z-index: 10001;
+  overflow: auto;
+  overscroll-behavior-y: none;
+}
+
+body.calculator #container {
+  background: none !important;
+}
+
+body.sticky-footer {
+  padding-bottom: 56px;
+}
+
+@media (max-width: 960px) {
+  body.no-footer {
+    padding-bottom: 0;
+  }
+}
+
+#footer-mobile {
+  position: relative;
+}
+
+a {
+  color: #00a0ff;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Averta", "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
+  sans-serif;
+}
+
+h1, h2 {
+  font-weight: 300;
+  margin-top: 0;
+}
+
+h1 strong, h2 strong {
+  color: #FF5253;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 36px;
+  color: #212f49;
+  margin-bottom: 36px;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 28px;
+  color: #212F49;
+}
+
+small {
+  line-height: 12px;
+  font-size: 12px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+/* Chilipiper */
+.chilipiper-popup {
+  z-index: 1000000000 !important;
+}
+#chilipiper-wrapper .chilipiper-popup {
+  background: white;
+  align-items: baseline;
+}
+.chilipiper-popup.in-custom-element .fabe-availability-mobile {
+  background: none;
+}
+.chilipiper-popup .chilipiper-popup-window {
+  width: 100% !important;
+  max-width: 850px;
+  padding: 10px 10px 0 10px;
+}
+.chilipiper-within-page .chilipiper-popup .chilipiper-popup-window {
+  max-height: 640px !important;
+}
+[data-chili-css="ModalCloseButton"], .chilipiper-popup .routing-loader {
+  display: none !important;
+}
+@media (max-width: 960px) {
+  .chilipiper-popup .chilipiper-popup-window {
+    padding: 0;
+  }
+  #chilipiper-wrapper .chilipiper-popup {
+    padding-top: 0;
+  }
+}
+

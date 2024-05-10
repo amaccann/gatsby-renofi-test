@@ -8,12 +8,24 @@ module.exports = {
     twitterUsername: `@gatsbyjs`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-emotion", "gatsby-transformer-remark", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "pages",
-      "path": "./src/pages/"
+  plugins: [
+    "gatsby-plugin-emotion",
+    "gatsby-transformer-remark",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content`,
+      },
     },
-    __key: "pages"
-  }]
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "pages",
+        "path": "./src/pages/"
+      },
+      __key: "pages"
+    },
+    'gatsby-transformer-remark'
+  ]
 };
