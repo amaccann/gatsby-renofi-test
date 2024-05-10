@@ -1,4 +1,5 @@
 import * as React from "react"
+import useSiteMetadata from '../hooks/useSiteMetadata'
 
 const pageStyles = {
   color: "#232129",
@@ -173,4 +174,19 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <title>Home Page</title>
+export const Head = () => {
+  const {title, description, twitterUsername} = useSiteMetadata();
+
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="image" content={seo.image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:creator" content={twitterUsername} />
+      <link rel="canonical" href="https://www.renofi.com/pros/test/blah" />
+    </>
+  );
+}

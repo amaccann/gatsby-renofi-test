@@ -3,7 +3,9 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `gatsby-renofi-test`,
+    title: `default gatsby-renofi-test`,
+    description: `Example project for the Gatsby Head API`,
+    twitterUsername: `@gatsbyjs`,
     siteUrl: `https://www.yourdomain.tld`
   },
   plugins: ["gatsby-plugin-emotion", "gatsby-transformer-remark", {
