@@ -4,20 +4,30 @@ import {Box, Image, Text} from 'rebass';
 import {QUERY_CONTRACTOR_LOGO_BY_SLUG, gqlQuery} from '../api'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import {Router} from '@reach/router';
-import { graphql } from 'gatsby';
-import { get } from 'lodash';
 
-const IndexPage = ({serverData, ...props}) => {
-  const {contractor, urlSlug} = serverData || {};
+const Contractor = ({serverData, urlSlug, ...props}) => {
+  const {contractor} = serverData || {};
   console.log('serverData', serverData);
   console.log('props', props);
   return (
     <Box p={[3]}>
-      <Box as="h4">Root</Box>
+      {Boolean(contractor) ? (
+        <Box as="h3">
+        Welcome to {contractor?.businessName} of {contractor?.city}, {contractor?.state}
+        </Box>
+      ) : null}
+      <Image src={contractor.logoUrl} width={250} />
       <p>urlSlug: {urlSlug}</p>
-      <Box as="p">{contractor?.businessName}</Box>
     </Box>
-  )
+  );
+}
+
+const IndexPage = ({serverData, ...props}) => {
+  return (
+    <Router>
+      <Contractor path="/:urlSlug" serverData={serverData} />
+    </Router>
+  );
 }
 
 export default IndexPage;
@@ -29,7 +39,7 @@ export const Head = ({serverData, ...props}) => {
   if (!contractor) {
     title = 'RenoFi - Home Renovation Financing';
   } else {
-    title = `RenoFi and ${contractor.businessName}`;
+    title = `RenoFi and ${contractor.businessName} of ${contractor.city}, ${contractor.state}`;
   }
   
   return (
@@ -46,7 +56,8 @@ export const Head = ({serverData, ...props}) => {
 }
 
 export async function getServerData({query, ...props}) {
-  const urlSlug = query?.contractor;
+  const urlSlug = props?.params?.['*']
+  // const urlSlug = query?.contractor;
   if (!urlSlug) {
     return {
       status: 200,
