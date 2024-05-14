@@ -8,6 +8,7 @@ import { get } from 'lodash';
 
 const IndexPage = ({serverData, ...props}) => {
   const {contractor, urlSlug} = serverData || {};
+  console.log('serverData', serverData);
   console.log('props', props);
   return (
     <Box p={[3]}>
