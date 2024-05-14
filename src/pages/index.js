@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {Box, Image, Text} from 'rebass';
 
+import {QUERY_CONTRACTOR_LOGO_BY_SLUG, gqlQuery} from '../api'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import {Router} from '@reach/router';
 import { graphql } from 'gatsby';
@@ -24,8 +25,13 @@ export default IndexPage;
 export const Head = ({serverData, ...props}) => {
   const {contractor} = serverData || {};
   const {description, twitterUsername} = useSiteMetadata();
-  const title = contractor ? `RenoFi and ${contractor.businessName}` : 'RenoFi - Home Renovation Financing';
-
+  let title;
+  if (!contractor) {
+    title = 'RenoFi - Home Renovation Financing';
+  } else {
+    title = `RenoFi and ${contractor.businessName}`;
+  }
+  
   return (
     <>
       <title>{title}</title>
@@ -38,36 +44,6 @@ export const Head = ({serverData, ...props}) => {
     </>
   );
 }
-
-const QUERY_CONTRACTOR_LOGO_BY_SLUG = `
-  query getContractorBySlug($urlSlug: String!) {
-    contractorBySlug(urlSlug: $urlSlug) {
-      businessName
-      logoUrl
-      daasPrice
-    }
-  }
-`;
-
-function gqlQuery (query) {
-  return async ({path, variables} = {}) => {
-    let req;
-    try {
-      req = await fetch(process.env.GATSBY_GRAPHQL_PROXY_URL, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify({query: query, variables}),
-      });
-      const rsp = await req.json();
-      return path ? get(rsp, path) : rsp;
-    } catch (err) {
-      return err;
-    }
-  }
-};
 
 export async function getServerData({query, ...props}) {
   const urlSlug = query?.contractor;
