@@ -22,6 +22,7 @@
     "gatsby-plugin-emotion": "^8.13.1",
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-remark": "^6.13.1",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rebass": "^4.0.7"
