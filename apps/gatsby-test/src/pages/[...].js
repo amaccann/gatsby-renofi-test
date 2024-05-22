@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Box, Image, Text} from 'rebass';
 
-import {QUERY_CONTRACTOR_LOGO_BY_SLUG, gqlQuery} from '../api'
+import {QUERY_CONTRACTOR_LOGO_BY_SLUG, gqlQuery} from '../utils'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import {Router} from '@reach/router';
 
